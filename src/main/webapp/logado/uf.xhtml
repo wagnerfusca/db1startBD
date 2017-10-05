@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org /1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>exemplo</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:outputLabel value="UF:" for="campo-uf" />
+		<h:inputText value="#{ufBean.nome}" id="campo-uf" />
+		<h:commandButton value="Salvar" action="#{ufBean.salvar}" />
+	</h:form>
+</h:body>
+</html>
