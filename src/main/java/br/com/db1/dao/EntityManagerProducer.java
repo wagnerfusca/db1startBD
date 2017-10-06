@@ -2,6 +2,7 @@ package br.com.db1.dao;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
@@ -18,6 +19,7 @@ public class EntityManagerProducer implements Serializable {
 	private EntityManagerFactory factory;
 
 	
+	@PostConstruct
 	@Produces	
 	public void createFactory() {
 		this.factory = Persistence.createEntityManagerFactory("db1start");

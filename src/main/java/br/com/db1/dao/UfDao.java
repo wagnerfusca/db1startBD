@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import br.com.db1.model.Uf;
 
@@ -14,8 +13,7 @@ public class UfDao {
 	private EntityManager manager;
 	
 	public List<Uf> listar() {
-		Query query = manager.createQuery("Select u from Uf u");
-		return query.getResultList();
+		return manager.createQuery("Select u from Uf u").getResultList();
 	}
 	
 	public void inserir(Uf uf) {
