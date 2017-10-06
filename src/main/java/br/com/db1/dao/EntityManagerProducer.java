@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+@ApplicationScoped
 public class EntityManagerProducer implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,8 +18,7 @@ public class EntityManagerProducer implements Serializable {
 	private EntityManagerFactory factory;
 
 	
-	@Produces
-	@ApplicationScoped
+	@Produces	
 	public void createFactory() {
 		this.factory = Persistence.createEntityManagerFactory("db1start");
 	}
