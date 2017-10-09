@@ -27,7 +27,7 @@ public class UfDao implements DAO<Uf> {
 
 	public List<Uf> findByName(String nome) {
 		Query query = manager.createQuery("Select u from Uf u where u.nome like :pNome");
-		query.setParameter("pNome", nome);
+		query.setParameter("pNome", "%"+nome+"%");
 		return query.getResultList();
 	}
 

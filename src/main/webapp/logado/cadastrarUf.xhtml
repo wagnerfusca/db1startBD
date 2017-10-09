@@ -11,7 +11,7 @@
 <h:body>
 	<h:form>
 		<h:outputLabel value="UF:" for="campo-uf" />
-		<h:inputText value="#{ufBean.nome}" id="campo-uf" />
+		<h:inputText value="#{ufBean.uf.nome}" id="campo-uf" />
 		<h:commandButton value="Salvar" action="#{ufBean.salvar}" />
 	</h:form>
 	<h:outputScript name="bootstrap.min.js" library="js" async="true"
