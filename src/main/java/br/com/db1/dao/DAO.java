@@ -5,12 +5,12 @@ import java.util.List;
 public interface DAO<T> {
 	List<T> findAll();
 
-	List<T> findById(Long id);
+	T findById(Long id);
 
-	List<T> findByName();
+	List<T> findByName(String name);
 
 	boolean save(T t);
 
-	boolean delete(T t);
+	boolean delete(Long id);
 
 }
