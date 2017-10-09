@@ -7,8 +7,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class CidadeTest {
 	
 	@Test

@@ -5,7 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.db1.dao.UfDao;
+import br.com.db1.dao.impl.UfDao;
 import br.com.db1.model.Uf;
 
 @RequestScoped
