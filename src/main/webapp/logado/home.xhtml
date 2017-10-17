@@ -9,14 +9,24 @@
 </h:head>
 
 <h:body>
-	Ola #{sessionScope.usuario}!
- 	Voce esta logado.
+
 	<h:form>
-		<h:commandButton value=" Sair "
-			action="#{autenticacaoBean.registraSaida}" />
-
-		<h:commandButton value="Cadastrar UF" action="uf" />
-
+		<div class="container">
+			Ola #{sessionScope.usuario}! Voce esta logado.
+			<div class="row">
+				<div id="col-6">
+					<h:commandButton value="Cadastrar UF" action="uf" class="btn btn-default" />
+				</div>
+				<div id="col-3">
+					<h:commandButton value="Cadastrar Cidade" action="cidade"
+						class="btn btn-default" />
+				</div>
+				<div id="col-3">
+					<h:commandButton value=" Sair "
+						action="#{autenticacaoBean.registraSaida}" class="btn " />
+				</div>
+			</div>
+		</div>
 	</h:form>
 	<h:outputScript name="bootstrap.min.js" library="js" async="true"
 		type="application/javascript" />
