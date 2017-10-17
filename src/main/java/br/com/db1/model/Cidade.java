@@ -26,9 +26,6 @@ public class Cidade {
 	@JoinColumn(name = "uf_id", nullable = false)
 	private Uf uf;
 
-	@Transient
-	private Uf2 uf2;
-
 	public Uf getUf() {
 		return uf;
 	}
@@ -51,14 +48,6 @@ public class Cidade {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Uf2 getUf2() {
-		return uf2;
-	}
-
-	public void setUf2(Uf2 uf2) {
-		this.uf2 = uf2;
 	}
 
 }
