@@ -20,8 +20,7 @@ public class CidadeTest {
 
 		Cidade cidade = new Cidade();
 		cidade.setNome("Maringa");
-		cidade.setUf2(Uf2.PR);
-
+		
 		manager.getTransaction().begin();
 		manager.persist(cidade);
 		manager.getTransaction().commit();
