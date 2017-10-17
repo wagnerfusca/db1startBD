@@ -34,7 +34,11 @@ public class UfDao implements DAO<Uf> {
 	@Transactional
 	public boolean save(Uf uf) {
 		try {
-			manager.persist(uf);
+			if (uf.getId() != null) {
+				manager.merge(uf);
+			} else {
+				manager.persist(uf);
+			}
 		} catch (Exception e) {
 			return false;
 		}

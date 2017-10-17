@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
@@ -14,7 +14,7 @@ import javax.inject.Named;
 import br.com.db1.dao.impl.UfDao;
 import br.com.db1.model.Uf;
 
-@RequestScoped
+@ApplicationScoped
 @Named
 public class UfBean {
 
@@ -29,6 +29,10 @@ public class UfBean {
 
 	@PostConstruct
 	public void init() {
+		zerarLista();
+	}
+
+	private void zerarLista() {
 		list = new ArrayList<Uf>();
 	}
 
@@ -53,32 +57,38 @@ public class UfBean {
 	}
 
 	public String novo() {
-		uf = new Uf();
+		this.uf = new Uf();
 		return "cadastrarUf";
 	}
 
-	public void salvar() {
-		if (!dao.save(uf)) {
+	public String salvar() {
+		if (!dao.save(this.uf)) {
 			adicionarMensagem("Erro ao cadastrar a UF.", FacesMessage.SEVERITY_ERROR);
+		} else {
+			adicionarMensagem("UF salvo com sucesso.", FacesMessage.SEVERITY_INFO);
+			nomeUfFiltrada = this.uf.getNome();
+			listarUf();
 		}
-
-		adicionarMensagem("UF salvo com sucesso.", FacesMessage.SEVERITY_INFO);
+		return "uf";
 	}
 
-	public String editar() {
-		uf = dao.findById(1L);
+	public String editar(Uf uf) {
+		this.uf = dao.findById(uf.getId());
 		return "cadastrarUf";
 	}
 
-	public void remover(Uf uf) {
+	public String remover(Uf uf) {
 		if (!dao.delete(uf.getId())) {
 			adicionarMensagem("Erro ao remover a UF.", FacesMessage.SEVERITY_ERROR);
+		} else {
+			adicionarMensagem("UF removida com sucesso.", FacesMessage.SEVERITY_INFO);
+			listarUf();
 		}
-
-		adicionarMensagem("UF removida com sucesso.", FacesMessage.SEVERITY_INFO);
+		return "uf";
 	}
 
 	public void listarUf() {
+		zerarLista();
 		if (!nomeUfFiltrada.isEmpty()) {
 			list.addAll(dao.findByName(nomeUfFiltrada));
 		} else {

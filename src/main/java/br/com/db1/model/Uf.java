@@ -19,7 +19,7 @@ public class Uf {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
+	@Column(length=2, nullable=false)
 	private String nome;
 	
 	@OneToMany(fetch=FetchType.LAZY , mappedBy="uf")

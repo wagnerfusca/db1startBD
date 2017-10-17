@@ -11,6 +11,7 @@
 <h:body>
 	<h:form>
 		<div class="container">
+		<h:messages />
 			<div class="row">
 				<h:outputLabel value="Pesquisar" />
 				<h:inputText id="nomeUfFiltrada" value="#{ufBean.nomeUfFiltrada}" />
@@ -25,10 +26,17 @@
 					<h:column>
 						<f:facet name="header">Nome</f:facet>#{item.nome}</h:column>
 					<h:column>
-						<h:commandButton value="Editar" action="#{ufBean.editar}" />
+						<h:commandLink action="#{ufBean.editar(item)}">
+							<h:graphicImage library="imagem" name="edit.png" alt="Editar" title="Editar" />
+						</h:commandLink>	
+					
 					</h:column>
 					<h:column>
-						<h:commandButton value="Remover" action="#{ufBean.remover(item)}" />
+						<h:commandLink action="#{ufBean.remover(item)}">
+							<h:graphicImage library="imagem" name="trash.png" alt="Remover"
+								title="Remover" />
+						</h:commandLink>
+
 					</h:column>
 				</h:dataTable>
 			</div>

@@ -20,7 +20,8 @@
 					<h:outputLabel value="Usuario:" for="campo-usuario" />
 				</div>
 				<div class="col-6">
-					<h:inputText value="#{autenticacaoBean.usuario}" id="campo-usuario" />
+					<h:inputText value="#{autenticacaoBean.usuario}" id="campo-usuario" required="true" label="Usuario"/>
+					<h:message for="campo-usuario" style="color:red" />
 				</div>
 			</div>
 			<div class="row">
@@ -28,7 +29,8 @@
 					<h:outputLabel value="Senha:" for="campo-senha" />
 				</div>
 				<div class="col-6">
-					<h:inputSecret value="#{autenticacaoBean.senha}" id="campo-senha" />
+					<h:inputSecret value="#{autenticacaoBean.senha}" id="campo-senha" required="true" label="Senha" />
+					<h:message for="campo-senha" style="color:red" />
 				</div>
 			</div>
 			<div class="row">
