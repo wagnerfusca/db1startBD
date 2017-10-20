@@ -11,8 +11,10 @@
 <h:body>
 	<h:form>
 		<div class="container">
-
-			<div class="row">
+<div class="row">
+				<h1>Cadastro de Cidade</h1>
+			</div>
+			<div class="form-group">
 				<h:outputLabel value="Nome:" for="campo-nome" />
 				<h:inputText value="#{cidadeBean.cidade.nome}" id="campo-nome"
 					required="true" label="Nome"
@@ -21,19 +23,20 @@
 				</h:inputText>
 				<h:message for="campo-nome" style="color:red" />
 			</div>
-			<div class="row">
+			<div class="form-group">
 				<h:outputLabel value="UF:" for="campo-uf" />
 				<h:selectOneMenu value="#{cidadeBean.cidade.uf}" id="campo-uf"
 					requiredMessage="UF obrigatorio" label="UF" required="true">
 					<f:selectItem itemValue="" itemLabel="Selecione uma UF" />
 					<f:selectItems value="#{cidadeBean.listUf}" var="uf"
-						itemLabel="#{uf.nome}" itemValue="#{uf}"  />
+						itemLabel="#{uf.nome}" itemValue="#{uf}" />
 				</h:selectOneMenu>
 				<h:message for="campo-uf" style="color:red" />
 			</div>
-			<div class="row">
-				<h:commandButton value="Salvar" action="#{cidadeBean.salvar}" />
-			</div>
+
+			<h:commandButton value="Salvar" action="#{cidadeBean.salvar}"
+				class="btn btn-default" />
+
 		</div>
 	</h:form>
 	<h:outputScript name="bootstrap.min.js" library="js" async="true"

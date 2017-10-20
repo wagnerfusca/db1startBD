@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org /1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>exemplo</title>
+	<h:outputStylesheet name="bootstrap.min.css" library="css"
+		type="text/css" />
+</h:head>
+<h:body>
+	<h:form>
+		<div class="container">
+			<div class="row">
+				<h1>Listagem de Arquivo</h1>
+			</div>
+			<h:messages />
+			<div class="row">
+				<h:outputLabel value="Pesquisar" />
+				<h:inputText id="nomeArquivoFiltrado"
+					value="#{arquivoBean.nomeArquivoFiltrado}" />
+				<h:commandButton class="btn" value="Filtrar"
+					action="#{arquivoBean.listarArquivo}" />
+			</div>
+			<div class="row">
+				<h:dataTable value="#{arquivoBean.list}" var="item"
+					rendered="#{not empty arquivoBean.list}" class="table table-striped table-bordered">
+					<h:column>
+						<f:facet name="header">ID</f:facet>#{item.id}</h:column>
+					<h:column>
+						<f:facet name="header">Nome</f:facet>#{item.nomeArquivo}</h:column>
+					<h:column>
+						<f:facet name="header">Extensao</f:facet>#{item.extensaoArquivo}</h:column>
+					<h:column>
+						<h:commandLink action="#{arquivoBean.download(item)}">
+							<h:graphicImage library="imagem" name="download.png"
+								alt="Download" title="Download" />
+							</h:commandLink>	
+							<h:commandLink action="#{arquivoBean.remover(item)}">
+								<h:graphicImage library="imagem" name="trash.png" alt="Remover"
+									title="Remover" />
+							</h:commandLink>
+					</h:column>
+				</h:dataTable>
+			</div>
+			<div class="row">
+				<h:commandButton value="Adicionar" action="#{arquivoBean.novo}" />
+			</div>
+		</div>
+	</h:form>
+	<h:outputScript name="bootstrap.min.js" library="js" async="true"
+		type="application/javascript" />
+</h:body>
+</html>

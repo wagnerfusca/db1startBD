@@ -14,14 +14,18 @@
 		<div class="container">
 			Ola #{sessionScope.usuario}! Voce esta logado.
 			<div class="row">
-				<div id="col-6">
+				<div class="col-sm-3">
 					<h:commandButton value="Cadastrar UF" action="uf" class="btn btn-default" />
 				</div>
-				<div id="col-3">
+				<div class="col-sm-3">
 					<h:commandButton value="Cadastrar Cidade" action="cidade"
 						class="btn btn-default" />
 				</div>
-				<div id="col-3">
+				<div class="col-sm-3">
+					<h:commandButton value="Cadastrar de Arquivos" action="arquivo"
+						class="btn btn-default" />
+				</div>
+				<div class="col-sm-3">
 					<h:commandButton value=" Sair "
 						action="#{autenticacaoBean.registraSaida}" class="btn " />
 				</div>
