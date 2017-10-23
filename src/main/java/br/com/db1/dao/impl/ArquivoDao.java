@@ -36,6 +36,7 @@ public class ArquivoDao implements DAO<Arquivo> {
 		try {
 			manager.persist(arquivo);
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;
@@ -47,6 +48,7 @@ public class ArquivoDao implements DAO<Arquivo> {
 		try {
 			manager.remove(arquivo);
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;

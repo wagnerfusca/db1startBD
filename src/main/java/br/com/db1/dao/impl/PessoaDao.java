@@ -42,6 +42,7 @@ public class PessoaDao implements DAO<Pessoa> {
 				manager.persist(pessoa);
 			}
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;
@@ -54,6 +55,7 @@ public class PessoaDao implements DAO<Pessoa> {
 		try {
 			manager.merge(pessoa);
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;

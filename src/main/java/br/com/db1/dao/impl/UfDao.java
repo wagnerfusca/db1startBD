@@ -40,6 +40,7 @@ public class UfDao implements DAO<Uf> {
 				manager.persist(uf);
 			}
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;
@@ -51,6 +52,7 @@ public class UfDao implements DAO<Uf> {
 		try {
 			manager.remove(uf);
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;

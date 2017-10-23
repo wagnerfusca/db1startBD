@@ -40,6 +40,7 @@ public class CidadeDao implements DAO<Cidade> {
 				manager.persist(cidade);
 			}
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;
@@ -51,6 +52,7 @@ public class CidadeDao implements DAO<Cidade> {
 		try {
 			manager.remove(cidade);
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 		return true;
