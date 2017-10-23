@@ -1,32 +1,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-<h:head>
-	<title>exemplo</title>
-	<h:outputStylesheet name="bootstrap.min.css" library="css"
-		type="text/css" />
-</h:head>
-<h:body>
-	<h:form enctype="multipart/form-data" prependId="false">
+<ui:composition template="/template.xhtml">
+	<ui:define name="corpo-da-pagina">
 		<div class="container">
-<div class="row">
-				<h1>Cadastro de Arquivos</h1>
-			</div>
-			<div class="form-group">
-				<h:outputLabel value="Arquivo:" for="campo-arquivo" />
-				<h:inputFile id="campo-arquivo" value="#{arquivoBean.arquivoUpado}"
-					required="true" label="Arquivo"  requiredMessage="Arquivo nao selecionado!!"/>
-				<h:message for="campo-arquivo" style="color:red" />
-			</div>
+			<h:form enctype="multipart/form-data" prependId="false">
+				<div class="row">
+					<h1>Cadastro de Arquivos</h1>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Arquivo:" for="campo-arquivo" />
+					<h:inputFile id="campo-arquivo" value="#{arquivoBean.arquivoUpado}"
+						required="true" label="Arquivo"
+						requiredMessage="Arquivo nao selecionado!!" />
+					<h:message for="campo-arquivo" style="color:red" />
+				</div>
 
-			<h:commandButton value="Salvar" action="#{arquivoBean.importa}"
-				class="btn btn-default" />
-
+				<h:commandButton value="Salvar" action="#{arquivoBean.importa}"
+					class="btn btn-default" />
+			</h:form>
 		</div>
-	</h:form>
-	<h:outputScript name="bootstrap.min.js" library="js" async="true"
-		type="application/javascript" />
-</h:body>
+	</ui:define>
+</ui:composition>
 </html>

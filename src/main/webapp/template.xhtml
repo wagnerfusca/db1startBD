@@ -5,36 +5,29 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
-	<title>exemplo</title>
+	<title>Sistema Exemplo - DB1 Start</title>
 	<h:outputStylesheet name="bootstrap.min.css" library="css"
 		type="text/css" />
-	<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/imagem/favicon.ico"/>
-		
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{request.contextPath}/resources/imagem/favicon.ico" />
+
 
 </h:head>
 
 <h:body>
-	<div class="container">
-		<h:form class="form-signin">
-		<h2>Para acessar o sistema, informe seu usuário e senha</h2>
-				<div>
-				<h:inputText value="#{autenticacaoBean.usuario}" id="campo-usuario"
-					required="true" label="Usuário" pt:placeholder="Informe o usuário" class="form-control" />
-				<h:message for="campo-usuario" style="color:red" />
-			</div>
-			<div class="form-group">
-				<h:inputSecret value="#{autenticacaoBean.senha}" id="campo-senha"
-					required="true" label="Senha" pt:placeholder="Informe a senha" class="form-control"/>
-				<h:message for="campo-senha" style="color:red" />
-
-			</div>
-
-			<h:commandButton value="Entrar" class="btn btn-lg btn-primary btn-block"
-				action="#{autenticacaoBean.autentica}" />
-		</h:form>
+	<div id="header">
+		<nav
+			class="navbar navbar-toggleable-md navbar-inverse bg-inverse mb-4">
+			Cabeçalho</nav>
+		<hr />
 	</div>
+	<ui:insert name="corpo-da-pagina" id="corpo-da-pagina">Espaço para o conteúdo da tela</ui:insert>
+	<div id="footer" class="footer">
+		<hr />
+		Rodapé
+		<h:outputScript name="bootstrap.min.js" library="js" async="true"
+			type="application/javascript" />
 
-	<h:outputScript name="bootstrap.min.js" library="js" async="true"
-		type="application/javascript" />
+	</div>
 </h:body>
 </html>

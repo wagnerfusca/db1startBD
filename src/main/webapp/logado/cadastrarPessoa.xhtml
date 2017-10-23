@@ -1,85 +1,91 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-<h:head>
-	<title>exemplo</title>
-	<h:outputStylesheet name="bootstrap.min.css" library="css"
-		type="text/css" />
-</h:head>
-<h:body>
-	<h:form>
+<ui:composition template="/template.xhtml">
+	<ui:define name="corpo-da-pagina">
 		<div class="container">
-			<div class="row">
-				<h1>Cadastro de Pessoa</h1>
-			</div>
-			<div class="form-group">
-				<h:outputLabel value="Nome:" for="campo-nome" />
-				<h:inputText value="#{pessoaBean.pessoa.nome}" id="campo-nome" required="true" label="Nome" maxlength="50" class="form-control"/>
-				<h:message for="campo-nome" style="color:red" />
-			</div>
-			<div class="form-group">
-				<h:outputLabel value="Endereco:" for="campo-endereco" />
-				<h:inputText value="#{pessoaBean.pessoa.endereco}" id="campo-endereco" required="true" label="Endereco"  maxlength="50"/>
-				<h:message for="campo-endereco" style="color:red" />
-			</div>
-			
-			<div class="form-group">
-				<h:outputLabel value="Numero:" for="campo-numero" />
-				<h:inputText value="#{pessoaBean.pessoa.numero}" id="campo-numero" required="true" label="Numero"  maxlength="10"/>
-				<h:message for="campo-numero" style="color:red" />
-			</div>
-			
-			<div class="form-group">
-				<h:outputLabel value="complemento:" for="campo-complemento" />
-				<h:inputText value="#{pessoaBean.pessoa.complemento}" id="campo-complemento" label="Complemento"  maxlength="10"/>
-			</div>
-			
-			<div class="form-group">
-				<h:outputLabel value="Sexo:" for="campo-sexo" />
+			<h:form>
+				<div class="row">
+					<h1>Cadastro de Pessoa</h1>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Nome:" for="campo-nome" />
+					<h:inputText value="#{pessoaBean.pessoa.nome}" id="campo-nome"
+						required="true" label="Nome" maxlength="50" class="form-control" />
+					<h:message for="campo-nome" style="color:red" />
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Endereco:" for="campo-endereco" />
+					<h:inputText value="#{pessoaBean.pessoa.endereco}"
+						id="campo-endereco" required="true" label="Endereco"
+						maxlength="50" />
+					<h:message for="campo-endereco" style="color:red" />
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel value="Numero:" for="campo-numero" />
+					<h:inputText value="#{pessoaBean.pessoa.numero}" id="campo-numero"
+						required="true" label="Numero" maxlength="10" />
+					<h:message for="campo-numero" style="color:red" />
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel value="complemento:" for="campo-complemento" />
+					<h:inputText value="#{pessoaBean.pessoa.complemento}"
+						id="campo-complemento" label="Complemento" maxlength="10" />
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel value="Sexo:" for="campo-sexo" />
 					<h:selectOneMenu value="#{pessoaBean.pessoa.sexo}" id="campo-sexo"
 						requiredMessage="Sexo obrigatorio" label="Sexo" required="true">
-					<f:selectItem itemValue="" itemLabel="Selecione um sexo" />
-					<f:selectItems value="#{pessoaBean.sexo}" var="s"
-						itemLabel="#{s.descricao}" itemValue="#{s}" />
-				</h:selectOneMenu>
-				<h:message for="campo-sexo" style="color:red" />
-			</div>
+						<f:selectItem itemValue="" itemLabel="Selecione um sexo" />
+						<f:selectItems value="#{pessoaBean.sexo}" var="s"
+							itemLabel="#{s.descricao}" itemValue="#{s}" />
+					</h:selectOneMenu>
+					<h:message for="campo-sexo" style="color:red" />
+				</div>
 
-			<div class="form-group">
-				<h:outputLabel value="Data Nascimento:" for="campo-datanascimento" />
-				<h:inputText value="#{pessoaBean.pessoa.dataNascimento}" id="campo-datanascimento" required="true" label="Data Nascimento"/>
-				<h:message for="campo-datanascimento" style="color:red" />
-			</div>
+				<div class="form-group">
+					<h:outputLabel value="Data Nascimento:" for="campo-datanascimento" />
+					<h:inputText value="#{pessoaBean.pessoa.dataNascimento}"
+						id="campo-datanascimento" required="true" label="Data Nascimento" />
+					<h:message for="campo-datanascimento" style="color:red" />
+				</div>
 
-			<div class="form-group">
-				<h:outputLabel value="E-mail:" for="campo-email" />
-				<h:inputText value="#{pessoaBean.pessoa.email}" id="campo-email" required="true" label="E-mail" />
-				<h:message for="campo-email" style="color:red" />
-			</div>
-			
-			<div class="form-group">
-				<h:outputLabel value="Senha:" for="campo-senha" />
-				<h:inputSecret id="campo-senha" required="true" label="Senha" rendered="#{empty pessoaBean.pessoa.id}" value="#{pessoaBean.senha}"/>
-				<h:message for="campo-senha" style="color:red" />
-			</div>
-			
-			<div class="form-group">
-				<h:outputLabel value="Administrador:" for="campo-administrador" />
-				<h:selectBooleanCheckbox id="campo-administrador" value="#{pessoaBean.pessoa.administrador}"/>
-			</div>						
-			<div class="form-group">
-				<h:outputLabel value="Ativo:" for="campo-ativo" />
-				<h:selectBooleanCheckbox id="campo-ativo" value="#{pessoaBean.pessoa.ativo}"/>
-			</div>
-									
-			<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"
-				class="btn btn-default" />
+				<div class="form-group">
+					<h:outputLabel value="E-mail:" for="campo-email" />
+					<h:inputText value="#{pessoaBean.pessoa.email}" id="campo-email"
+						required="true" label="E-mail" />
+					<h:message for="campo-email" style="color:red" />
+				</div>
 
+				<div class="form-group">
+					<h:outputLabel value="Senha:" for="campo-senha" />
+					<h:inputSecret id="campo-senha" required="true" label="Senha"
+						rendered="#{empty pessoaBean.pessoa.id}"
+						value="#{pessoaBean.senha}" />
+					<h:message for="campo-senha" style="color:red" />
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel value="Administrador:" for="campo-administrador" />
+					<h:selectBooleanCheckbox id="campo-administrador"
+						value="#{pessoaBean.pessoa.administrador}" />
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="Ativo:" for="campo-ativo" />
+					<h:selectBooleanCheckbox id="campo-ativo"
+						value="#{pessoaBean.pessoa.ativo}" />
+				</div>
+
+				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"
+					class="btn btn-default" />
+			</h:form>
 		</div>
-	</h:form>
-	<h:outputScript name="bootstrap.min.js" library="js" async="true"
-		type="application/javascript" />
-</h:body>
+	</ui:define>
+</ui:composition>
 </html>
