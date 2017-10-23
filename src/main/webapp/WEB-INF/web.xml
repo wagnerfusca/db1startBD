@@ -16,9 +16,21 @@
 	</servlet-mapping>
 
 	<error-page>
+		<error-code>404</error-code>
+		<location>/erro404.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/erro500.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/erroView.xhtml</location>
+	</error-page>
+	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/erro.xhtml</location>
-	</error-page>
+	</error-page>	
 
 	<!-- Login filter -->
 	<filter>
