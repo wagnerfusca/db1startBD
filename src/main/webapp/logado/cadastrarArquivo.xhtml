@@ -15,12 +15,14 @@
 					<h:outputLabel value="Arquivo:" for="campo-arquivo" />
 					<h:inputFile id="campo-arquivo" value="#{arquivoBean.arquivoUpado}"
 						required="true" label="Arquivo"
-						requiredMessage="Arquivo nao selecionado!!" />
+						requiredMessage="Arquivo não selecionado!!" />
 					<h:message for="campo-arquivo" style="color:red" />
 				</div>
 
 				<h:commandButton value="Salvar" action="#{arquivoBean.importa}"
-					class="btn btn-default" />
+					class="btn btn-success" />
+				<h:commandButton value="Voltar" action="arquivo" class="btn btn-secondary" immediate="true"/>	
+					
 			</h:form>
 		</div>
 	</ui:define>

@@ -52,7 +52,9 @@
 				<div class="form-group">
 					<h:outputLabel value="Data Nascimento:" for="campo-datanascimento" />
 					<h:inputText value="#{pessoaBean.pessoa.dataNascimento}"
-						id="campo-datanascimento" required="true" label="Data Nascimento" />
+						id="campo-datanascimento" required="true" label="Data Nascimento" maxlength="10">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText>
 					<h:message for="campo-datanascimento" style="color:red" />
 				</div>
 
@@ -83,7 +85,8 @@
 				</div>
 
 				<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"
-					class="btn btn-default" />
+					class="btn btn-success" />
+				<h:commandButton value="Voltar" action="pessoa" class="btn btn-secondary" immediate="true"/>	
 			</h:form>
 		</div>
 	</ui:define>

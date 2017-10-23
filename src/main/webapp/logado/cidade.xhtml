@@ -24,11 +24,11 @@
 						rendered="#{not empty cidadeBean.list}"
 						class="table table-striped table-bordered">
 						<h:column>
-							<f:facet name="header">ID</f:facet>#{item.id}</h:column>
+							<f:facet name="header">ID</f:facet><h:outputLabel value="#{item.id}"/></h:column>
 						<h:column>
-							<f:facet name="header">Nome</f:facet>#{item.nome}</h:column>
+							<f:facet name="header">Nome</f:facet><h:outputLabel value="#{item.nome}"/></h:column>
 						<h:column>
-							<f:facet name="header">UF</f:facet>#{item.uf.nome}</h:column>
+							<f:facet name="header">UF</f:facet><h:outputLabel value="#{item.uf.nome}"/></h:column>
 						<h:column>
 							<h:commandLink action="#{cidadeBean.editar(item)}">
 								<h:graphicImage library="imagem" name="edit.png" alt="Editar"
@@ -44,7 +44,8 @@
 					</h:dataTable>
 				</div>
 				<div class="row">
-					<h:commandButton value="Adicionar" action="#{cidadeBean.novo}" />
+					<h:commandButton value="Adicionar" action="#{cidadeBean.novo}" class="btn btn-primary"/>
+					<h:commandButton value="Voltar" action="home" class="btn btn-secondary"/>
 				</div>
 			</h:form>
 		</div>

@@ -23,7 +23,7 @@
 				<div class="form-group">
 					<h:outputLabel value="UF:" for="campo-uf" />
 					<h:selectOneMenu value="#{cidadeBean.cidade.uf}" id="campo-uf"
-						requiredMessage="UF obrigatorio" label="UF" required="true">
+						requiredMessage="UF obrigatório" label="UF" required="true">
 						<f:selectItem itemValue="" itemLabel="Selecione uma UF" />
 						<f:selectItems value="#{cidadeBean.listUf}" var="uf"
 							itemLabel="#{uf.nome}" itemValue="#{uf}" />
@@ -32,7 +32,8 @@
 				</div>
 
 				<h:commandButton value="Salvar" action="#{cidadeBean.salvar}"
-					class="btn btn-default" />
+					class="btn btn-success" />
+				<h:commandButton value="Voltar" action="cidade" class="btn btn-secondary" immediate="true"/>	
 			</h:form>
 		</div>
 	</ui:define>

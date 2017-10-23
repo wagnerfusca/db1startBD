@@ -24,11 +24,11 @@
 						rendered="#{not empty arquivoBean.list}"
 						class="table table-striped table-bordered">
 						<h:column>
-							<f:facet name="header">ID</f:facet>#{item.id}</h:column>
+							<f:facet name="header">ID</f:facet><h:outputLabel value="#{item.id}"/></h:column>
 						<h:column>
-							<f:facet name="header">Nome</f:facet>#{item.nomeArquivo}</h:column>
+							<f:facet name="header">Nome</f:facet><h:outputLabel value="#{item.nomeArquivo}"/></h:column>
 						<h:column>
-							<f:facet name="header">Extensao</f:facet>#{item.extensaoArquivo}</h:column>
+							<f:facet name="header">Extensão</f:facet><h:outputLabel value="#{item.extensaoArquivo}"/></h:column>
 						<h:column>
 							<h:commandLink action="#{arquivoBean.download(item)}">
 								<h:graphicImage library="imagem" name="download.png"
@@ -42,7 +42,9 @@
 					</h:dataTable>
 				</div>
 				<div class="row">
-					<h:commandButton value="Adicionar" action="#{arquivoBean.novo}" />
+					<h:commandButton value="Adicionar" action="#{arquivoBean.novo}" class="btn btn-primary"/>
+					<h:commandButton value="Voltar" action="home" class="btn btn-secondary"/>
+					
 				</div>
 			</h:form>
 		</div>
