@@ -22,7 +22,6 @@ public class Arquivo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Lob
 	@Column(name = "arquivo", nullable = false)
 	private byte[] arquivo;
 

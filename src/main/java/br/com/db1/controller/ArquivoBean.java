@@ -51,8 +51,8 @@ public class ArquivoBean {
 
 	public void download(Arquivo arquivoParametro) throws IOException {
 		try {
-			Path path = Paths.get("c:\temp");
-			Files.write(path, arquivo.getArquivo());
+			Path path = Paths.get("D:\fusca-teste");
+			Files.write(path, arquivoParametro.getArquivo());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
