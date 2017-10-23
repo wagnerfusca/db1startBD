@@ -26,47 +26,47 @@
 						<h:column>
 							<f:facet name="header">ID</f:facet>
 							<h:outputLabel value="#{item.id}" />
-							<h:column>
-								<f:facet name="header">Nome</f:facet>
-								<h:outputLabel value="#{item.nome}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Data Nascimento</f:facet>
-								<h:outputLabel value="#{item.dataNascimento}">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputLabel>
-							</h:column>
-							<h:column>
-								<f:facet name="header">Sexo</f:facet>
-								<h:outputLabel value="#{item.sexo.descricao}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">E-mail</f:facet>
-								<h:outputLabel value="#{item.email}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Administrador</f:facet>
-								<h:graphicImage library="imagem" name="check.png"
-									alt="Administrador" title="Administrador"
-									rendered="#{item.administrador}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">Ativo</f:facet>
-								<h:graphicImage library="imagem" name="check.png" alt="Ativo"
-									title="Ativo" rendered="#{item.ativo}" />
-							</h:column>
-							<h:column>
-								<h:commandLink action="#{pessoaBean.editar(item)}">
-									<h:graphicImage library="imagem" name="edit.png" alt="Editar"
-										title="Editar" />
-								</h:commandLink>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nome</f:facet>
+							<h:outputLabel value="#{item.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Data Nascimento</f:facet>
+							<h:outputLabel value="#{item.dataNascimento}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputLabel>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Sexo</f:facet>
+							<h:outputLabel value="#{item.sexo.descricao}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">E-mail</f:facet>
+							<h:outputLabel value="#{item.email}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Administrador</f:facet>
+							<h:graphicImage library="imagem" name="check.png"
+								alt="Administrador" title="Administrador"
+								rendered="#{item.administrador}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Ativo</f:facet>
+							<h:graphicImage library="imagem" name="check.png" alt="Ativo"
+								title="Ativo" rendered="#{item.ativo}" />
+						</h:column>
+						<h:column>
+							<h:commandLink action="#{pessoaBean.editar(item)}">
+								<h:graphicImage library="imagem" name="edit.png" alt="Editar"
+									title="Editar" />
+							</h:commandLink>
 
-								<h:commandLink action="#{pessoaBean.remover(item)}">
-									<h:graphicImage library="imagem" name="trash.png" alt="Remover"
-										title="Remover" />
-								</h:commandLink>
+							<h:commandLink action="#{pessoaBean.remover(item)}">
+								<h:graphicImage library="imagem" name="trash.png" alt="Remover"
+									title="Remover" />
+							</h:commandLink>
 
-							</h:column>
 						</h:column>
 					</h:dataTable>
 				</div>

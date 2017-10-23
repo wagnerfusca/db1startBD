@@ -69,28 +69,28 @@ public class PessoaBean {
 			this.pessoa.setSenha(criptografia.criptografar(senha, "MD5"));
 		}
 		if (!dao.save(this.pessoa)) {
-			adicionarMensagem("Erro ao cadastrar a UF.", FacesMessage.SEVERITY_ERROR);
+			adicionarMensagem("Erro ao cadastrar a Pessoa.", FacesMessage.SEVERITY_ERROR);
 		} else {
-			adicionarMensagem("UF salvo com sucesso.", FacesMessage.SEVERITY_INFO);
+			adicionarMensagem("Pessoa salvo com sucesso.", FacesMessage.SEVERITY_INFO);
 			nomePessoaFiltrada = this.pessoa.getNome();
 			listarPessoa();
 		}
-		return "uf";
+		return "pessoa";
 	}
 
-	public String editar(Pessoa uf) {
-		this.pessoa = dao.findById(uf.getId());
-		return "cadastrarUf";
+	public String editar(Pessoa pessoa) {
+		this.pessoa = dao.findById(pessoa.getId());
+		return "cadastrarPessoa";
 	}
 
-	public String remover(Pessoa uf) {
-		if (!dao.delete(uf.getId())) {
-			adicionarMensagem("Erro ao remover a UF.", FacesMessage.SEVERITY_ERROR);
+	public String remover(Pessoa pessoa) {
+		if (!dao.delete(pessoa.getId())) {
+			adicionarMensagem("Erro ao remover a pessoa.", FacesMessage.SEVERITY_ERROR);
 		} else {
-			adicionarMensagem("UF removida com sucesso.", FacesMessage.SEVERITY_INFO);
+			adicionarMensagem("Pessoa removida com sucesso.", FacesMessage.SEVERITY_INFO);
 			listarPessoa();
 		}
-		return "uf";
+		return "pessoa";
 	}
 
 	public void listarPessoa() {

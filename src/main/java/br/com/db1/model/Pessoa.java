@@ -48,9 +48,6 @@ public class Pessoa implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro = new Date();
 
-	@Column(name = "usuariocadastro", nullable = false, length = 10)
-	private String usuarioCadastro;
-
 	@Column(nullable = false, length = 50)
 	private String email;
 
@@ -125,14 +122,6 @@ public class Pessoa implements Serializable {
 
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
-	}
-
-	public String getUsuarioCadastro() {
-		return usuarioCadastro;
-	}
-
-	public void setUsuarioCadastro(String usuarioCadastro) {
-		this.usuarioCadastro = usuarioCadastro;
 	}
 
 	public String getEmail() {

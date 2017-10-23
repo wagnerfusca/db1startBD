@@ -22,13 +22,13 @@ public class PessoaDao implements DAO<Pessoa> {
 	}
 
 	public Pessoa findById(Long id) {
-		Query query = manager.createQuery("Select p from Pessoa p where u.id = :pId");
+		Query query = manager.createQuery("Select p from Pessoa p where p.id = :pId");
 		query.setParameter("pId", id);
 		return (Pessoa) query.getSingleResult();
 	}
 
 	public List<Pessoa> findByName(String nome) {
-		Query query = manager.createQuery("Select p from Pessoa p where u.nome like :pNome");
+		Query query = manager.createQuery("Select p from Pessoa p where p.nome like :pNome");
 		query.setParameter("pNome", "%" + nome + "%");
 		return query.getResultList();
 	}

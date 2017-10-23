@@ -1,27 +1,35 @@
 package br.com.db1.controller;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-@ManagedBean
-public class AutenticacaoBean {
-	private static final String USUARIO_CORRETO = "admin";
-	private static final String SENHA_CORRETA = "admin";
+import br.com.db1.dao.impl.AutenticacaoDao;
+import br.com.db1.model.Pessoa;
 
+@ManagedBean
+@RequestScoped
+@Named
+public class AutenticacaoBean {
 	private String usuario;
 	private String senha;
 
+	@Inject
+	private AutenticacaoDao dao;
+	
 	public String autentica() {
 		FacesContext fc = FacesContext.getCurrentInstance();
-
-		if (USUARIO_CORRETO.equals(this.usuario) && SENHA_CORRETA.equals(this.senha)) {
-
+		Pessoa pessoa = dao.findById(usuario, senha);
+		
+		if (pessoa != null) {
 			ExternalContext ec = fc.getExternalContext();
 			HttpSession session = (HttpSession) ec.getSession(false);
-			session.setAttribute("usuario", this.usuario);
+			session.setAttribute("usuario", pessoa);
 
 			return "/logado/home?faces-redirect=true";
 		} else {
