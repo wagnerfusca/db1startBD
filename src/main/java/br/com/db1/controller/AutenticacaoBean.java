@@ -25,7 +25,7 @@ public class AutenticacaoBean {
 	public String autentica() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Pessoa pessoa = dao.findById(usuario, senha);
-		
+		//("ADMIN".equals(this.usuario) && "ADMIN".equals(this.senha))
 		if (pessoa != null) {
 			ExternalContext ec = fc.getExternalContext();
 			HttpSession session = (HttpSession) ec.getSession(false);
