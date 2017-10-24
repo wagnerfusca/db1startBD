@@ -1,9 +1,6 @@
 package br.com.db1.controller;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -50,12 +48,14 @@ public class ArquivoBean {
 	}
 
 	public void download(Arquivo arquivoParametro) throws IOException {
-		try {
-			Path path = Paths.get("D:\fusca-teste");
-			Files.write(path, arquivoParametro.getArquivo());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		externalContext.setResponseHeader("Content-Type", arquivoParametro.getExtensaoArquivo());
+		externalContext.setResponseHeader("Content-Length", ""+arquivoParametro.getArquivo().length);
+		externalContext.setResponseHeader("Content-Disposition",
+				"attachment;filename=\"" + arquivoParametro.getNomeArquivo() + "\"");
+		externalContext.getResponseOutputStream().write(arquivoParametro.getArquivo());
+		facesContext.responseComplete();
 	}
 
 	public String getNomeArquivo() {
