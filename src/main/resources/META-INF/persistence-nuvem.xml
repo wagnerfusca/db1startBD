@@ -9,14 +9,14 @@
 		<properties>
 
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="javax.persistence.jdbc.user" value="postgres" />
-			<property name="javax.persistence.jdbc.password" value="123" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
+			<property name="javax.persistence.jdbc.user" value="SEU_USUARIO" />
+			<property name="javax.persistence.jdbc.password" value="SUA_SENHA" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://SEU_HOST:5432/SUA_BASE_DADOS?username=SEU_USUARIO&amp;password=SUA_SENHA&amp;ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			
+
 			<property name="hibernate.jdbc.use_get_generated_keys" value="true" />
 			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
 
