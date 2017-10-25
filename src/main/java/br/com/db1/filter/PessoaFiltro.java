@@ -12,7 +12,7 @@ public class PessoaFiltro {
 
 	private Date dataFinal = new Date();
 
-	private Boolean administrador;
+	private Boolean administrador = null;
 
 	private Sexo sexo = Sexo.T;
 
