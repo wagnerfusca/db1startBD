@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import br.com.db1.dao.DAO;
 import br.com.db1.dao.Transactional;
+import br.com.db1.filter.PessoaFiltro;
 import br.com.db1.model.Pessoa;
 import br.com.db1.type.Sexo;
 
@@ -61,45 +62,52 @@ public class PessoaDao implements DAO<Pessoa> {
 		return true;
 	}
 
-	public List<Pessoa> pesquisaPersonalizada(String nome, Date dataInicial, Date dataFinal, Boolean administrador,
-			Sexo sexo) {
+	public List<Pessoa> pesquisaPersonalizada(PessoaFiltro filtro) {
 		StringBuilder sb = new StringBuilder("Select p from Pessoa p where 1 = 1 ");
-		if (!nome.isEmpty()) {
-			sb.append(" and nome like :pNome ");
-		}
-
-		if (dataInicial != null && dataFinal != null) {
-			sb.append(" and dataCadastro beetween :pDataInicial and :pDataFinal ");
-		}
-		
-		if (administrador) {
-			sb.append(" and administrador = :pAdministrador ");
-		}
-		
-		if (sexo != null) {
-			sb.append(" and sexo = :pSexo ");
-		}
+		montaFiltroPesquisa(filtro, sb);
 
 		Query query = manager.createQuery(sb.toString());
 
-		if (!nome.isEmpty()) {
-			query.setParameter("pNome", "%" + nome + "%");
-		}
-
-		if (dataInicial != null && dataFinal != null) {
-			query.setParameter("pDataInicial", dataInicial);
-			query.setParameter("pDataFinal", dataFinal);
-		}
-		
-		if (administrador) {
-			query.setParameter("pAdministrador", administrador);
-		}
-		
-		if (sexo != null) {
-			query.setParameter("pSexo", sexo);
-		}
+		montaValoresPesquisa(filtro, query);
 		
 		return query.getResultList();
+	}
+
+	private void montaValoresPesquisa(PessoaFiltro filtro, Query query) {
+		if (!filtro.getNome().isEmpty()) {
+			query.setParameter("pNome", filtro.getNome() + "%");
+		}
+
+		if (filtro.getDataInicial() != null && filtro.getDataFinal() != null) {
+			query.setParameter("pDataInicial", filtro.getDataInicial());
+			query.setParameter("pDataFinal", filtro.getDataFinal());
+		}
+		
+		if (filtro.getAdministrador() != null) {
+			query.setParameter("pAdministrador", filtro.getAdministrador());
+		}
+		
+		if (!Sexo.T.equals(filtro.getSexo())) {
+			query.setParameter("pSexo", filtro.getSexo());
+		}
+	}
+
+	private void montaFiltroPesquisa(PessoaFiltro filtro, StringBuilder sb) {
+		if (!filtro.getNome().isEmpty()) {
+			sb.append(" and nome like :pNome ");
+		}
+
+		if (filtro.getDataInicial() != null && filtro.getDataFinal() != null) {
+			sb.append(" and dataCadastro between :pDataInicial and :pDataFinal ");
+		}
+		
+		if (filtro.getAdministrador() != null) {
+			sb.append(" and administrador = :pAdministrador ");
+		}
+		
+		if (!Sexo.T.equals(filtro.getSexo())) {
+			sb.append(" and sexo = :pSexo ");
+		}
 	}
 
 }

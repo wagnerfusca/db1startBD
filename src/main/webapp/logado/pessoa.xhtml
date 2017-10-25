@@ -12,13 +12,46 @@
 					<h1>Listagem de Pessoas</h1>
 				</div>
 				<h:messages />
+				<hr />
+				<h3>Filtros</h3>
 				<div class="row">
-					<h:outputLabel value="Pesquisar" />
+					<h:outputLabel value="Nome" />
 					<h:inputText id="nomePessoaFiltrada"
-						value="#{pessoaBean.nomePessoaFiltrada}" />
-					<h:commandButton class="btn" value="Filtrar"
-						action="#{pessoaBean.listarPessoa}" />
+						value="#{pessoaBean.filtro.nome}" />
 				</div>
+				<div class="row">
+					<h:outputLabel value="Data Nascimento" />
+					<h:inputText id="dataInicialFiltro"
+						value="#{pessoaBean.filtro.dataInicial}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText>
+					<h:inputText id="dataFinalFiltro"
+						value="#{pessoaBean.filtro.dataFinal}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:inputText>
+				</div>
+				<div class="row">
+					<h:outputLabel value="Administrador" />
+					<h:selectOneMenu value="#{pessoaBean.filtro.administrador}"
+						id="administradorFiltro">
+						<f:selectItem itemValue="" itemLabel="Todos" />
+						<f:selectItems value="#{pessoaBean.administradorFiltro}" var="a"
+							itemLabel="#{a.descricao}" itemValue="#{a}" />
+					</h:selectOneMenu>
+				</div>
+
+				<div class="row">
+					<h:outputLabel value="Sexo" />
+					<h:selectOneMenu value="#{pessoaBean.filtro.sexo}" id="sexoFiltro">
+						<f:selectItems value="#{pessoaBean.sexoFiltro}" var="s"
+							itemLabel="#{s.descricao}" itemValue="#{s}" />
+					</h:selectOneMenu>
+
+				</div>
+				<h:commandButton class="btn" value="Filtrar"
+					action="#{pessoaBean.listarPessoa}" />
+				<hr />
+
 				<div class="row">
 					<h:dataTable value="#{pessoaBean.list}" var="item"
 						rendered="#{not empty pessoaBean.list}"

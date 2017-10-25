@@ -43,7 +43,7 @@
 					<h:selectOneMenu value="#{pessoaBean.pessoa.sexo}" id="campo-sexo"
 						requiredMessage="Sexo obrigatorio" label="Sexo" required="true">
 						<f:selectItem itemValue="" itemLabel="Selecione um sexo" />
-						<f:selectItems value="#{pessoaBean.sexo}" var="s"
+						<f:selectItems value="#{pessoaBean.sexoCadastro}" var="s"
 							itemLabel="#{s.descricao}" itemValue="#{s}" />
 					</h:selectOneMenu>
 					<h:message for="campo-sexo" style="color:red" />

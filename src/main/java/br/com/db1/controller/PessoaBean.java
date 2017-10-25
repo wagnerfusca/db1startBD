@@ -12,8 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.db1.dao.impl.PessoaDao;
+import br.com.db1.filter.PessoaFiltro;
 import br.com.db1.model.Pessoa;
 import br.com.db1.service.Criptografia;
+import br.com.db1.type.Booleano;
 import br.com.db1.type.Sexo;
 
 @ApplicationScoped
@@ -28,11 +30,11 @@ public class PessoaBean {
 
 	private List<Pessoa> list;
 
-	private String nomePessoaFiltrada;
-
 	private Pessoa pessoa;
 
 	private String senha;
+	
+	private PessoaFiltro filtro = new PessoaFiltro();
 
 	public String getSenha() {
 		return senha;
@@ -45,14 +47,31 @@ public class PessoaBean {
 	@PostConstruct
 	public void init() {
 		zerarLista();
+		filtro = new PessoaFiltro();
+	}
+
+	public PessoaFiltro getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(PessoaFiltro filtro) {
+		this.filtro = filtro;
 	}
 
 	private void zerarLista() {
 		list = new ArrayList<Pessoa>();
 	}
 
-	public Sexo[] getSexo() {
-		return Sexo.values();
+	public Sexo[] getSexoCadastro() {
+		return Sexo.getSexoCadastro();
+	}
+	
+	public Sexo[] getSexoFiltro() {
+		return Sexo.getSexoFiltro();
+	}
+	
+	public Booleano[] getAdministradorFiltro() {
+		return Booleano.values();
 	}
 
 	public List<Pessoa> getList() {
@@ -72,7 +91,7 @@ public class PessoaBean {
 			adicionarMensagem("Erro ao cadastrar a Pessoa.", FacesMessage.SEVERITY_ERROR);
 		} else {
 			adicionarMensagem("Pessoa salvo com sucesso.", FacesMessage.SEVERITY_INFO);
-			nomePessoaFiltrada = this.pessoa.getNome();
+			filtro.setNome(this.pessoa.getNome());
 			listarPessoa();
 		}
 		return "pessoa";
@@ -95,11 +114,7 @@ public class PessoaBean {
 
 	public void listarPessoa() {
 		zerarLista();
-		if (!nomePessoaFiltrada.isEmpty()) {
-			list.addAll(dao.findByName(nomePessoaFiltrada));
-		} else {
-			list.addAll(dao.findAll());
-		}
+		list.addAll(dao.pesquisaPersonalizada(filtro));
 	}
 
 	public void adicionarMensagem(String mensagem, Severity tipoMensagem) {
@@ -110,13 +125,7 @@ public class PessoaBean {
 
 	}
 
-	public String getNomePessoaFiltrada() {
-		return nomePessoaFiltrada;
-	}
-
-	public void setNomePessoaFiltrada(String nomePessoaFiltrada) {
-		this.nomePessoaFiltrada = nomePessoaFiltrada;
-	}
+	
 
 	public Pessoa getPessoa() {
 		return pessoa;
