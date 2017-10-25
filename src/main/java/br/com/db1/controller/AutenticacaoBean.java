@@ -25,13 +25,13 @@ public class AutenticacaoBean {
 	public String autentica() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Pessoa pessoa = dao.findById(usuario, senha);
-		//("ADMIN".equals(this.usuario) && "ADMIN".equals(this.senha))
+		//if ("ADMIN".equals(this.usuario.toUpperCase()) && "ADMIN".equals(this.senha.toUpperCase())) {
 		if (pessoa != null) {
 			ExternalContext ec = fc.getExternalContext();
 			HttpSession session = (HttpSession) ec.getSession(false);
 			session.setAttribute("usuario", pessoa);
 
-			return "/logado/home?faces-redirect=true";
+			return "/logado/home";
 		} else {
 			FacesMessage fm = new FacesMessage("usuário e/ou senha inválidos");
 			fm.setSeverity(FacesMessage.SEVERITY_ERROR);
