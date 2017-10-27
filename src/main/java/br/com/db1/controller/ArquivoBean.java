@@ -12,6 +12,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.apache.commons.io.IOUtils;
@@ -47,6 +48,25 @@ public class ArquivoBean {
 		zerarLista();
 	}
 
+	private void exibirImagem() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		HttpServletResponse response = (HttpServletResponse) ec.getResponse();
+
+		for (Arquivo arquivo : list) {
+			if (arquivo.getArquivo() != null) {
+				response.setContentType(ec.getMimeType(arquivo.getNomeArquivo()));
+		        response.setContentLength(arquivo.getArquivo().length);
+		        try {
+					response.getOutputStream().write(arquivo.getArquivo());
+				} catch (IOException e) {
+					System.err.println(e.getMessage());
+					//e.printStackTrace();
+				}
+			
+			}
+		}
+	}
 	public void download(Arquivo arquivoParametro) throws IOException {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
@@ -155,6 +175,7 @@ public class ArquivoBean {
 		} else {
 			list.addAll(dao.findAll());
 		}
+	//	exibirImagem();
 	}
 
 	public void adicionarMensagem(String mensagem, Severity tipoMensagem) {
