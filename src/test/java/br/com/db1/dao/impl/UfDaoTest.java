@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.db1.AbstractTestCase;
 import br.com.db1.model.Uf;
 
 public class UfDaoTest extends AbstractTestCase {
