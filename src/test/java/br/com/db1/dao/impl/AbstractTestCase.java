@@ -8,7 +8,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.mockito.MockitoAnnotations;
 
 public abstract class AbstractTestCase {
     protected static EntityManagerFactory emf;
