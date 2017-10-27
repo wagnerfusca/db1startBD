@@ -9,11 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.legacy.PowerMockRunner;
 
 import br.com.db1.AbstractTestCase;
 import br.com.db1.dao.impl.UfDao;
