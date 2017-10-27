@@ -1,4 +1,4 @@
-package br.com.db1.dao.impl;
+package br.com.db1;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -21,6 +21,11 @@ public class UfBean {
 	@Inject
 	private UfDao dao;
 
+
+	UfBean(UfDao dao){
+		this.dao = dao;
+	}
+	
 	private List<Uf> list;
 
 	private String nomeUfFiltrada;
