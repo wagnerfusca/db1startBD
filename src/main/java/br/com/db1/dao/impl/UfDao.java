@@ -14,6 +14,10 @@ public class UfDao implements DAO<Uf> {
 
 	@Inject
 	private EntityManager manager;
+	
+	public UfDao(EntityManager manager) {
+		this.manager = manager;
+	}
 
 	public List<Uf> findAll() {
 		return manager.createQuery("Select u from Uf u").getResultList();
