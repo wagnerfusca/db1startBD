@@ -1,6 +1,11 @@
 package br.com.db1.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +17,12 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 import br.com.db1.dao.impl.ArquivoDao;
@@ -56,22 +64,23 @@ public class ArquivoBean {
 		for (Arquivo arquivo : list) {
 			if (arquivo.getArquivo() != null) {
 				response.setContentType(ec.getMimeType(arquivo.getNomeArquivo()));
-		        response.setContentLength(arquivo.getArquivo().length);
-		        try {
+				response.setContentLength(arquivo.getArquivo().length);
+				try {
 					response.getOutputStream().write(arquivo.getArquivo());
 				} catch (IOException e) {
 					System.err.println(e.getMessage());
-					//e.printStackTrace();
+					// e.printStackTrace();
 				}
-			
+
 			}
 		}
 	}
+
 	public void download(Arquivo arquivoParametro) throws IOException {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
 		externalContext.setResponseHeader("Content-Type", arquivoParametro.getExtensaoArquivo());
-		externalContext.setResponseHeader("Content-Length", ""+arquivoParametro.getArquivo().length);
+		externalContext.setResponseHeader("Content-Length", "" + arquivoParametro.getArquivo().length);
 		externalContext.setResponseHeader("Content-Disposition",
 				"attachment;filename=\"" + arquivoParametro.getNomeArquivo() + "\"");
 		externalContext.getResponseOutputStream().write(arquivoParametro.getArquivo());
@@ -97,6 +106,7 @@ public class ArquivoBean {
 
 			byte[] arquivoByte = IOUtils.toByteArray(arquivoUpado.getInputStream());
 			this.arquivo.setArquivo(arquivoByte);
+			escreverArquivoDiretorio(this.arquivo);
 			salvar();
 
 		} catch (IOException e) {
@@ -105,6 +115,22 @@ public class ArquivoBean {
 		return "arquivo";
 	}
 
+	private void escreverArquivoDiretorio(Arquivo arquivo) {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		String absoluteWebPath = ec.getRealPath("/");
+		String destPath = absoluteWebPath + "/resources/imagem/" + arquivo.getNomeArquivo();
+		File destFile = new File(destPath);
+		
+		InputStream is = new ByteArrayInputStream(arquivo.getArquivo());
+		try {
+			FileUtils.copyInputStreamToFile(is, destFile);
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
 	private void zerarLista() {
 		list = new ArrayList<Arquivo>();
 	}
@@ -175,7 +201,7 @@ public class ArquivoBean {
 		} else {
 			list.addAll(dao.findAll());
 		}
-	//	exibirImagem();
+		// exibirImagem();
 	}
 
 	public void adicionarMensagem(String mensagem, Severity tipoMensagem) {
@@ -185,5 +211,6 @@ public class ArquivoBean {
 		fc.addMessage(null, fm);
 
 	}
+
 
 }

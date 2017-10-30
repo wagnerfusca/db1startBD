@@ -30,6 +30,10 @@
 						<h:column>
 							<f:facet name="header">Extensão</f:facet><h:outputLabel value="#{item.extensaoArquivo}"/></h:column>
 						<h:column>
+							<f:facet name="header">Imagem</f:facet>
+							<h:graphicImage library="imagem" name="#{item.nomeArquivo}"/>
+							</h:column>	
+						<h:column>
 							<h:commandLink action="#{arquivoBean.download(item)}">
 								<h:graphicImage library="imagem" name="download.png"
 									alt="Download" title="Download" />
