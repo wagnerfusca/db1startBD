@@ -9,14 +9,14 @@
 		<properties>
 
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="javax.persistence.jdbc.user" value="*****" />
-			<property name="javax.persistence.jdbc.password" value="****" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres" />
+			<property name="javax.persistence.jdbc.user" value="umfitcriyynlsn" />
+			<property name="javax.persistence.jdbc.password" value="9eb5b97fae33a648dcb1c8972074b68a1438129ad06b0935a920df188ca58d95" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-54-225-237-64.compute-1.amazonaws.com:5432/dpp1h1pkha641?username=umfitcriyynlsn&amp;password=9eb5b97fae33a648dcb1c8972074b68a1438129ad06b0935a920df188ca58d95&amp;ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			
+
 			<property name="hibernate.jdbc.use_get_generated_keys" value="true" />
 			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
 
