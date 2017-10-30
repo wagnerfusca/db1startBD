@@ -42,6 +42,7 @@
 				</div>
 				<div class="row">
 					<h:commandButton value="Adicionar" action="#{ufBean.novo}" class="btn btn-primary"/>
+					<h:commandButton value="Imprimir" action="#{ufBean.imprimirRelatorio}" class="btn btn-info" rendered="#{not empty ufBean.list}"/>
 					<h:commandButton value="Voltar" action="home" class="btn btn-secondary"/>
 				</div>
 			</h:form>
