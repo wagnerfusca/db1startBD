@@ -18,11 +18,10 @@ import br.com.db1.model.Uf;
 @Named
 public class UfBean {
 
-	@Inject
 	private UfDao dao;
 
-
-	UfBean(UfDao dao){
+	@Inject
+	public UfBean(UfDao dao){
 		this.dao = dao;
 	}
 	

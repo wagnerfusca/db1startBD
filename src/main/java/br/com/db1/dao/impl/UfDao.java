@@ -12,9 +12,9 @@ import br.com.db1.model.Uf;
 
 public class UfDao implements DAO<Uf> {
 
-	@Inject
 	private EntityManager manager;
 	
+	@Inject
 	public UfDao(EntityManager manager) {
 		this.manager = manager;
 	}
