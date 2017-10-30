@@ -1,7 +1,5 @@
 package br.com.db1.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +15,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
@@ -69,7 +65,6 @@ public class ArquivoBean {
 					response.getOutputStream().write(arquivo.getArquivo());
 				} catch (IOException e) {
 					System.err.println(e.getMessage());
-					// e.printStackTrace();
 				}
 
 			}
@@ -106,29 +101,12 @@ public class ArquivoBean {
 
 			byte[] arquivoByte = IOUtils.toByteArray(arquivoUpado.getInputStream());
 			this.arquivo.setArquivo(arquivoByte);
-			escreverArquivoDiretorio(this.arquivo);
 			salvar();
 
 		} catch (IOException e) {
 			adicionarMensagem("Erro ao enviar o arquivo " + e.getMessage(), FacesMessage.SEVERITY_ERROR);
 		}
 		return "arquivo";
-	}
-
-	private void escreverArquivoDiretorio(Arquivo arquivo) {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		ExternalContext ec = fc.getExternalContext();
-		String absoluteWebPath = ec.getRealPath("/");
-		String destPath = absoluteWebPath + "/resources/imagem/" + arquivo.getNomeArquivo();
-		File destFile = new File(destPath);
-		
-		InputStream is = new ByteArrayInputStream(arquivo.getArquivo());
-		try {
-			FileUtils.copyInputStreamToFile(is, destFile);
-		} catch (IOException e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
-		}
 	}
 	
 	private void zerarLista() {
@@ -201,9 +179,27 @@ public class ArquivoBean {
 		} else {
 			list.addAll(dao.findAll());
 		}
-		// exibirImagem();
+		
+		for (Arquivo arquivo:list) {
+			escreverArquivoDiretorio(arquivo);
+		}
 	}
 
+	private void escreverArquivoDiretorio(Arquivo arquivo) {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		ExternalContext ec = fc.getExternalContext();
+		String absoluteWebPath = ec.getRealPath("/");
+		String destPath = absoluteWebPath + "/resources/imagem/" + arquivo.getNomeArquivo();
+		File destFile = new File(destPath);
+		
+		InputStream is = new ByteArrayInputStream(arquivo.getArquivo());
+		try {
+			FileUtils.copyInputStreamToFile(is, destFile);
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	
 	public void adicionarMensagem(String mensagem, Severity tipoMensagem) {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		FacesMessage fm = new FacesMessage(mensagem);
